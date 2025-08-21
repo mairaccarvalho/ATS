@@ -1,0 +1,1214 @@
+/* ==================== RESET E CONFIGURAÇÕES GLOBAIS ==================== */
+/* Remove margens, paddings padrões e define box-model para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "ethnocentric";
+    text-decoration: none;
+    list-style-type: none;
+    scroll-behavior: smooth;
+}
+
+/* Variáveis de cores e tipografia */
+:root {
+    --bg-color: #ffffff;
+    --second-bg-color: #000;
+    --text-color: #ffffff;
+    --second-text-color: #000;
+    --p-font-size: clamp(1rem, 1.5vw, 1.1rem);
+    --h1-font-size: clamp(2.5rem, 8vw, 4rem);
+    --h2-font-size: clamp(1.6rem, 5vw, 2rem);
+    --h-line-height: 1.2rem;
+    --p-line-height: 1.4rem;
+}
+
+/* Estilos base do body (gradiente de fundo) */
+body {
+    background: linear-gradient(90deg, rgba(240,250,250,1) 0%, rgba(228,223,251,1) 100%);
+    color: #111;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: 5px;
+}
+
+/* ==================== ANIMAÇÃO DE SPLASH SCREEN ==================== */
+/* Tela inicial com animação de fade-out */
+#splash{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #01001a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeout 0,5s ease-in-out 0,5s forwards;
+}
+
+/* Menu responsivo: botão toggle */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: 25px;
+        z-index: 200;
+    }
+
+    .navlist {
+        position: fixed;
+        top: 100px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 100px);
+        background-color: #01001a;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: all 0.5s ease;
+    }
+
+    .navlist.active {
+        left: 0;
+    }
+}
+
+/* Estilo do texto do logo na splash */
+.logo{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+/* Estilo do slogan na splash */
+.slogan{
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Elementos escondidos inicialmente (aparecem após splash) */
+#navbarID, #main-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    visibility: hidden;
+}
+
+/* Classe para mostrar elementos com fade-in */
+.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Container da animação do logo */
+.logoAnimacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+/* Animação de desaparecimento */
+@keyframes fadeout{
+    to{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* ==================== NAVBAR ==================== */
+/* Ícone do menu hamburguer (cor) */
+.menu-icon svg {
+    fill:#faf9f6
+}
+
+/* Espaçamento padrão para seções */
+section {
+    padding: 7.5rem 15% 7.5rem;
+}
+
+/* Barra de navegação principal */
+.navbar{
+    background-color: #01001a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.38rem 15%;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Estado escondido da navbar (acionado via JS) */
+.navbar.hide {
+    transform: translateY(-100%);
+}
+
+/* Estilo do logo na navbar */
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 0%;
+}
+
+.logo.floating {
+    position: fixed;
+    top: 100px;
+    /* left: 30px; */
+    /* z-index: 99; */
+    opacity: 0.8; /* leve transparência */
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Logo flutuante ao rolar */
+.logo-destaque {
+    opacity: 0.7;
+    transform: scale(0.85);
+    transition: all 0.3s ease;
+    border-radius: 0px 0px 50px 50px;
+}
+/* Lista de itens de navegação */
+.navlist {
+    display: flex;
+    gap: 3.16rem;
+}
+
+/* Container da logo na navbar - padrão */
+.navbar .logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Imagem da logo dentro do container */
+.navbar .logo img {
+    height: 125px; /* tamanho padrão da logo */
+    transition: all 0.3s ease;
+}
+/* Links da navbar */
+.navlist a {
+    color: white;
+    text-transform: uppercase;
+    font-size: var(--p-font-size);
+    font-weight: 500;
+    transition: all 250ms ease;
+    position: relative;
+}
+
+/* Efeito hover nos links */
+.navlist a:hover {
+    opacity: 0.8;
+}
+
+/* Efeito de sublinhado animado */
+.navlist a::after {
+    content: "";
+    position: absolute;
+    background-color: var(--logo-color);
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -8px;
+    transition: all 0.3s;
+}
+
+/* Estado hover do sublinhado */
+.navlist a:hover::after {
+    width: 100%;
+}
+
+
+
+
+/* ==================== ELEMENTOS COMUNS ==================== */
+/* Faixa colorida decorativa */
+.faixa-colorida {
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(to right, #7f20eb, #01001a);
+    margin: 16px 0;
+    border-radius: 4px;
+    margin: 0;
+}
+
+
+.faixa-colorida1 {
+    /* background: linear-gradient(to bottom, #01001a , #310c5c , #01001a ); */
+    background: linear-gradient(to bottom, #310c5c, #ffffff);
+    height: 60px;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+/* ==================== SEÇÃO ABOUT ==================== */
+/* Container principal */
+.trabalhoAbout {
+    margin-top: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    background: #fff;
+    color: #000;
+}
+.fundo-titulo{
+    background: linear-gradient(to top , #310c5c, #01001a);
+    color: white;
+    width: 100vw;       /* Ocupa toda a largura da tela */
+    padding: 100px 0;   /* Apenas padding vertical */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sloganInicio{
+    text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: white;
+    margin-top: 2%;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo (texto superior) */
+.trabalhoAbout .subtitulo {
+    text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #000;
+    opacity: 0.5;
+    margin-top: 2%;
+    margin-bottom: 10px;
+}
+
+/* Título principal */
+.trabalhoAbout .titulo-principal {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+/* Título principal alternativo */
+.trabalhoAbout .titulo-principal1 {
+    text-align: center;
+    font-size: clamp(2rem, 6vw, 100px);
+    font-weight: 400;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+/* Texto descritivo */
+.trabalhoAbout .descricao {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+/* Container dos cards */
+.cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+/* Cards individuais */
+.card {
+       background: linear-gradient(to bottom, rgba(240,250,250,1) 0%, rgba(228,223,251,1) 100%);
+
+    border-radius: 20px;
+    padding: 48px 40px;
+    flex: 1 1 300px;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card:hover {
+    transform: scale(1.05); /* aumenta 5% ao passar o mouse */
+}
+/* Cores de fundo específicas para cada card
+.card:nth-child(1) {
+    background-color: #dfd3ffa6;
+}
+.card:nth-child(2) {
+    background-color: #dfd3ffa6;
+}
+.card:nth-child(3) {
+    background-color: #dfd3ffa6;
+} */
+
+/* Ícones dentro dos cards */
+.card-icon {
+    width: 80px;
+    margin: 0 auto 32px;
+    display: block;
+}
+
+/* Títulos dos cards */
+.card-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+/* Texto dos cards */
+.card-text {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+
+/* Container dos cards */
+.cards-container-tecnologia {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    transition: transform 0.3s ease-in-out; /* transição suave */
+    transform: scale(1); /* tamanho original */
+}
+.card-tecnologia:hover {
+    transform: scale(1.05); /* aumenta 5% ao passar o mouse */
+}
+
+.card-tecnologia {
+    background-color: rgba(198, 187, 241, 0.336);
+    border-radius: 20px;
+    padding: 48px 40px;
+    flex: 1 1 300px;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ícones dentro dos cards */
+.card-icon {
+    width: 80px;
+    margin: 0 auto 32px;
+    display: block;
+}
+
+/* Títulos dos cards */
+.card-title-tecnologias {
+    text-align: center;
+    font-size: clamp(1.2rem, 3vw, 30px);
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: #240774;
+}
+
+/* Texto dos cards */
+.card-text-tecnologias {
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+
+/* Container secundário */
+.container-about {
+    width: 100%;
+    margin: 0;
+    padding: 40px 25%;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    justify-content: center;
+    color: #240774;
+}
+
+/* Títulos na seção de texto */
+.text-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* Span colorido nos títulos */
+.text-section h1 span {
+    color: #4f0fff;
+}
+
+/* Texto descritivo */
+.description {
+    margin-bottom: 24px;
+    font-size:1.5rem;
+    color: #444;
+}
+
+/* Lista de features */
+.features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+/* Itens da lista */
+.features li {
+    margin-bottom: 10px;
+    padding-left: 24px;
+    position: relative;
+}
+
+/* Ícone de check na lista */
+.features li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #8b5cf6;
+}
+
+/* Botão de call-to-action */
+.cta-button {
+    display: inline-block;
+    background: #13082b;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition:  0.3s;
+}
+
+/* Efeito hover do botão */
+.cta-button:hover {
+    background: #3d0ccf;
+}
+
+/* ==================== SEÇÃO DE SERVIÇOS ==================== */
+/* Títulos da seção */
+.caixa h1,h4{
+    color: #13082b;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Título principal */
+.tituloCaixa {
+    color: #240774;
+    text-align: start;
+    font-size: 48px;
+}
+
+/* Subtítulo */
+.titulo1Caixa {
+    text-align: start;
+    font-size: 30px;
+    opacity: 30%;
+}
+
+/* Grid de serviços */
+.caixa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 45px;
+    padding-bottom: 5%;
+    margin: 1%;
+    margin-bottom: 10px;
+}
+
+/* Itens de serviço individuais */
+.caixa > div {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 300px;
+    height: 300px;
+    color: #131212;
+    font-size: 20px;
+    padding: 30px;
+    margin-top: 60px;
+}
+
+/* Títulos dentro dos serviços */
+.caixa h1, h6, h2{
+    font-size: 25px;
+    color: #240774;
+    margin-bottom: 6px;
+}
+
+/* Container do botão */
+.botao-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Estilo do botão */
+.botao {
+    display: inline-block;
+    padding: 10px 40px;
+    font-size: 16px;
+    border: 1px solid #240774;
+    color: #240774;
+    background-color: transparent;
+    border-radius: 60px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito hover do botão */
+.botao:hover {
+    background-color: #13082b;
+    color: #fff;
+}
+
+
+
+/* Passos do processo */
+.trabalho .step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 200px 0;
+    padding: 0 150px;
+    gap: 40px;
+}
+.step h4{
+    color: #240774;
+}
+/* Versão invertida do passo */
+.trabalho .step.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Parte de texto */
+.trabalho .text {
+    flex: 1;
+}
+
+/* Parte de imagem */
+.trabalho .image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Imagens dos passos */
+.imgTrabalho {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Números grandes */
+.trabalho h1 {
+    font-size: 84px;
+    font-weight: 900;
+    color: #000000;
+    opacity: 30%;
+    margin-bottom: 20px;
+}
+
+/* Títulos dos passos */
+.trabalho h4 {
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+/* Texto dos passos */
+.trabalho p {
+    font-size: 20px;
+    color: #000000;
+}
+
+/* ==================== SEÇÃO SOBRE NÓS ==================== */
+/* Containers de conteúdo */
+.quem-somos,
+.nossa-identidade,
+.diferenciais,
+.metodologia,
+.compromisso {
+    margin-top: 6%;
+    padding: 30px 20% 0 20%;
+    color: #333;
+    text-align: center;
+}
+
+.diferenciais{
+    background-color: rgba(228, 223, 251, 0.37);
+    padding-bottom: 5%;
+    margin-top: 0;
+}
+
+
+
+/* Seção Missão, Visão e Valores */
+.mvv {
+  padding: 60px 20px;
+  background-color: #f7f9fc;
+}
+
+.mvv .container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.mvv h2 {
+  color: #380a9f;
+  font-size: 1.8rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.mvv p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.valores-lista {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.valores-lista li {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.valores-lista strong {
+  color: #380a9f;
+}
+
+/* Título da seção */
+.titulo-about{
+    font-family: inherit;
+    font-size: 30px;
+    padding: 2%;
+    margin-bottom: 40px;
+    color: #01001a;
+}
+
+/* Títulos das subseções */
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #380a9f;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Parágrafos */
+section p {
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Listas */
+section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: justify;
+}
+
+/* Itens de lista */
+section ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* Texto em negrito */
+section ul li strong {
+    color: #240774;
+}
+
+/* ==================== SEÇÃO DE CONTATO ==================== */
+/* Seção principal */
+.contato-section {
+    background-color: #310c5c;
+    padding: 120px 40px;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+/* Container do conteúdo */
+.contato-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Subtítulo */
+.contato-subtitulo {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 500;
+    color: #ccc;
+}
+
+/* Título principal */
+.contato-titulo {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 20px 0;
+}
+
+/* Informações de contato */
+.contato-telefone,
+.contato-email {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Link de email */
+.email-link {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Container do formulário */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+/* Título do formulário */
+.form-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Formulário */
+.formulario-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Labels */
+.formulario-contato label {
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Campos de input */
+.formulario-contato input[type="text"],
+.formulario-contato input[type="email"],
+.formulario-contato input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Botão de submit */
+.formulario-contato input[type="submit"] {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #13082b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition:  0.3s;
+}
+
+/* Efeito hover do botão */
+.formulario-contato input[type="submit"]:hover {
+    background-color: #2d00b6;
+}
+
+.formulario-contato textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 1rem;
+    resize: vertical;
+}
+/* ==================== FOOTER ==================== */
+/* Rodapé principal */
+footer {
+    background-color:#01001a;
+    height: auto;
+    width: 100%;
+    position: static;
+}
+
+/* Conteúdo do footer */
+#footer-content {
+    color: white;
+    font-size: 15px;
+    background-color:#01001a;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 5%;
+    gap: 40px; 
+}
+
+/* Títulos das seções */
+#footer-contacts h3 {
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Parágrafos de contato */
+#footer-contacts p {
+    margin-bottom: 1rem;
+    line-height: var(--p-line-height);
+}
+
+/* Espaçamento entre ícones e texto */
+#footer-contacts p span{
+    margin-right: 5px;
+}
+
+/* Ícone de localização */
+#footer-contacts p .fa-location-dot{
+    margin-right: 8px;
+}
+
+/* Logo no footer */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Texto descritivo */
+.footer-logo p {
+    margin-top: 1.5rem;
+    font-weight: bold;
+}
+
+/* Título */
+.footer-logo h2 {
+    text-transform: uppercase;
+}
+
+/* Redes sociais */
+.footer-social-media {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* Links de redes sociais */
+.footer-social-media a {
+    color: var(--bg-color);
+    transition: all 0.3s ease;
+}
+
+/* Efeito hover (mantido como original) */
+.footer-social-media a:hover {
+    color: var(--bg-color);
+}
+
+/* Seção de horário */
+.footer-work-time {
+    flex: 1; /* Ocupa espaço proporcional */
+    padding-right: 20px; /* Espaço interno à direita */
+    min-width: 200px; /* Largura mínima */
+}
+
+.footer-work-time h3{
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Texto do horário */
+.footer-work-time p {
+    line-height: var(--p-line-height);
+}
+/* Container de Contatos */
+#footer-contacts {
+    flex: 1; /* Ocupa espaço proporcional */
+    padding-left: 20px; /* Espaço interno à esquerda */
+    min-width: 200px; /* Largura mínima */
+}
+
+/* Logo e redes sociais */
+.footer-logo {
+    flex: 2; /* Ocupa mais espaço que as outras colunas */
+    padding-right: 40px; /* Espaço maior à direita */
+}
+/* Copyright */
+#footer-copyright {
+    background-color:#01001a;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem;
+    font-weight: 700;
+}
+
+/* ==================== Pagina Trabalho==================== */
+
+
+.pagina-trabalho {
+      padding:  120px ;
+      background: linear-gradient(to bottom, #01001a , #310c5c , #01001a );
+      min-height: 100vh; /* garante que o fundo ocupe toda a altura da tela */
+}
+.subtitulo-trabalho{
+     text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 40px;
+    color: #ffffff;
+    opacity: 0.5;
+    margin-top: 2%;
+    margin-bottom: 10px;
+}
+.titulo-principal1-trabalho{
+    text-align: center;
+    font-size:75px;
+    font-weight: 400;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+    color: #ffffff;
+}
+.descricao-trabalho{
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    
+    color: #ffffff;
+}
+/* ==================== BOTÃO VOLTAR AO TOPO ==================== */
+/* Estado padrão (invisível) */
+.button-top {
+    visibility: hidden;
+    background-color: transparent;
+}
+
+/* Estado ativo (visível) */
+.button-top.btn-active {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #380a9f;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    visibility: visible;
+}
+
+/* Seta do botão */
+.arrow {
+    padding: 10px;
+    box-shadow: 4px -4px 0 1px #b374ff inset;
+    border: solid transparent;
+    border-width: 1px 1px 5px 5px;
+    transform: rotate(135deg);
+    transition: 0.4s;
+}
+
+/* Efeito hover da seta */
+.arrow:hover {
+    opacity: 0.7;
+}
+
+
+
+/* ==================== MEDIA QUERIES (RESPONSIVIDADE) ==================== */
+
+/* Tablets (768px a 991px) */
+@media (max-width: 991px) {
+    /* Ajuste no padding das seções */
+    section {
+        padding: 8rem 10% 5rem;
+    }
+    
+    /* Navbar mais compacta */
+    .navbar {
+        padding: 1rem 10%;
+    }
+    
+    /* Ajuste no tamanho dos títulos */
+    .trabalhoAbout .titulo-principal1 {
+        font-size: 48px;
+    }
+    
+    /* Cards em 2 colunas */
+    .cards-container {
+        gap: 20px;
+    }
+    
+    .card {
+        flex: 1 1 calc(50% - 20px);
+    }
+    
+    /* Passos do processo em coluna */
+    .trabalho .step {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .trabalho .step.reverse {
+        flex-direction: column;
+    }
+    
+    /* Ajuste de padding nos textos sobre nós */
+    .quem-somos, 
+    .nossa-identidade, 
+    .diferenciais, 
+    .metodologia, 
+    .compromisso {
+        padding: 30px 10% 0 10%;
+    }
+}
+
+/* Celulares grandes (576px a 767px) */
+@media (max-width: 767px) {
+    /* Ajustes de tipografia */
+    :root {
+        --h1-font-size: 3rem;
+        --h2-font-size: 1.6rem;
+    }
+    
+    /* Seções com menos padding */
+    section {
+        padding: 6rem 5% 3rem;
+    }
+    
+    /* Menu mobile */
+    .navlist {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: #01001a;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: all 0.5s ease;
+    }
+    
+    .navlist.active {
+        left: 0;
+    }
+    
+    /* Títulos menores */
+    .trabalhoAbout .titulo-principal1 {
+        font-size: 36px;
+    }
+    
+    .trabalhoAbout .titulo-principal {
+        font-size: 32px;
+    }
+    
+    /* Cards em coluna única */
+    .card {
+        flex: 1 1 100%;
+    }
+    
+    /* Serviços em coluna única */
+    .caixa > div {
+        flex: 1 1 100%;
+    }
+    
+    /* Footer em coluna */
+    #footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .footer-work-time, 
+    #footer-contacts {
+        text-align: center;
+    }
+}
+
+/* Celulares pequenos (até 575px) */
+@media (max-width: 575px) {
+    /* Ajustes finos de tipografia */
+    :root {
+        --h1-font-size: 2.5rem;
+        --p-font-size: 1rem;
+    }
+    
+    /* Títulos reduzidos */
+    .trabalhoAbout .titulo-principal1 {
+        font-size: 28px;
+    }
+    
+    .trabalhoAbout .subtitulo {
+        font-size: 16px;
+    }
+    
+    /* Texto de contato menor */
+    .contato-titulo {
+        font-size: 36px;
+    }
+    
+    /* Formulário mais compacto */
+    .form-container {
+        padding: 20px;
+    }
+    
+    /* Números do processo menores */
+    .trabalho h1 {
+        font-size: 60px;
+    }
+    
+    /* Botão menor */
+    .button-top.btn-active {
+        width: 2.5rem;
+        height: 2.5rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}

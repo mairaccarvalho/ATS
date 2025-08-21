@@ -1,0 +1,210 @@
+/* ==================== RESET E CONFIGURAÇÕES GLOBAIS ==================== */
+/* Reset básico para remover margens e paddings padrão */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos gerais do body */
+body {
+    margin-top: 2%;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
+/* ==================== TIPOGRAFIA ==================== */
+/* Estilo do título principal */
+.titulo-principal {
+    font-size: 60px;
+    opacity: 90%;
+}
+
+/* Estilo do texto principal */
+.textoPrincipal {
+    font-size: 25px;
+    text-align: justify;
+    color: white;
+    margin: 2% 20% 2% 20%;
+}
+
+/* Estilo para cabeçalhos h1 */
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Estilo para parágrafos */
+p {
+    text-align: justify;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* ==================== BOTÕES ==================== */
+/* Container de botões */
+.botao-container {
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Estilo base do botão */
+.botao {
+    display: inline-block;
+    padding: 10px 40px;
+    font-size: 16px;
+    border: 1px solid #191133;
+    color: #fafafa;
+    background-color: transparent;
+    border-radius: 60px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito hover do botão */
+.botao:hover {
+    background-color: #170f2e;
+    color: #fff;
+}
+
+/* ==================== FORMULÁRIO ==================== */
+/* Container do formulário */
+.form-container {
+    max-width: 800px;
+    margin: 5% auto;
+    padding: 30px;
+    border: 5px solid;
+    border-radius: 30px;
+    background-color: #080400;
+    box-shadow: 0 0 10px rgba(180, 116, 255, 0.2);
+}
+
+/* Estilo das labels do formulário */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 600;
+}
+
+/* Estilo dos inputs do formulário */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* Estilo específico do botão submit */
+input[type="submit"] {
+    background-color: #221630;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito hover do botão submit */
+input[type="submit"]:hover {
+    background-color: #2E0197;
+}
+
+/* ==================== RODAPÉ ==================== */
+/* Estilo geral do rodapé */
+.footer-dark {
+    background-color: black;
+    color: #f1f1f1;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Container principal do footer */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+/* Colunas do footer */
+.footer-column {
+    flex: 1 1 280px;
+}
+
+/* Estilo do logo no footer */
+.footer-logo {
+    color: #B474FF;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Títulos das colunas */
+.footer-column h3 {
+    color: #B474FF;
+    margin-bottom: 10px;
+}
+
+/* Texto das colunas */
+.footer-column p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Ícones de redes sociais */
+.footer-social a img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito hover nos ícones */
+.footer-social a img:hover {
+    transform: scale(1.1);
+}
+
+/* Seção inferior do footer */
+.footer-bottom {
+    border-top: 1px solid #B474FF33;
+    margin-top: 30px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+/* Tablet e mobile (até 768px) */
+@media (max-width: 768px) {
+    /* Ajustes no container do footer */
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Ajustes no container do formulário */
+    .form-container {
+        padding: 20px;
+    }
+
+    /* Ajustes no conteúdo do footer */
+    #footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalhos | ATS</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/trabalho.css"> 
+</head>
+<body class="faixa-colorida" >
+
+    <!-- NAVBAR -->
+       <nav class="navbar">
+        <!-- Logo -->
+       <div class="logoNav">
+            <a href="index.html" class="logo" id="logoID">
+                <img src="img/LogoNav.png" alt="Logo ATS" style="border-radius: 0px 0px 40px 40px;" >
+            </a>
+        </div>
+
+        <!-- Itens do menu -->
+        <ul class="navlist nav-itens">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Sobre Nós</a></li>
+            <li><a href="trabalhos.html">Trabalhos</a></li>
+            <li><a href="about.html#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- FAIXA DECORATIVA -->
+    <div class="faixa-colorida"></div>
+
+    <!-- SEÇÃO TRABALHOS -->
+    <section class="trabalhoAbout pagina-trabalho" >
+        <h2 class="subtitulo-trabalho">Portfólio</h2>
+        <h1 class="titulo-principal1-trabalho">Nossos Trabalhos</h1>
+        <p class="descricao-trabalho">
+            Confira abaixo alguns dos projetos desenvolvidos pela nossa equipe.
+        </p>
+
+        <div class="cards-container">
+            <!-- CARD 1 -->
+            <div class="card">
+                <img src="img/engrenagem.png" alt="Projeto 1" class="card-icon">
+                <h3 class="card-title">Sistema de Gestão Escolar</h3>
+                <p class="card-text">
+                    Plataforma integrada para escolas, com controle de matrículas, notas e relatórios.
+                </p>
+                <p class="card-text"><strong>Tecnologias:</strong> PHP, MySQL, Bootstrap</p>
+                <a href="#" class="cta-button">Em Desenvolvimento</a>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card">
+                <img src="img/zenithlogo.png" alt="Projeto 2" class="card-icon">
+                <h3 class="card-title">Zenith </h3>
+                <p class="card-text">
+                    Página de alta conversão com design responsivo para lançamento de produto digital.
+                </p>
+                <p class="card-text"><strong>Tecnologias:</strong> HTML, CSS, JavaScript</p>
+                <a href="https://mairaccarvalho.github.io/zenith-site/" class="cta-button" target="_blank">Ver Projeto</a>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card">
+                <img src="img/engrenagem.png" alt="Projeto 3" class="card-icon">
+                <h3 class="card-title">Sistema de Controle Financeiro</h3>
+                <p class="card-text">
+                    Aplicativo para organização de gastos pessoais, metas e relatórios mensais.
+                </p>
+                <p class="card-text"><strong>Tecnologias:</strong> React Native, PHP, MySQL, Bootstrap</p>
+                <a href="#" class="cta-button">Em Desenvolvimento</a>
+            </div>
+        </div>
+    </section>
+
+     <!-- ==================== RODAPÉ ==================== -->
+    <footer>
+        <div id="footer-content">
+            <!-- Seção 1: Logo e redes sociais -->
+            <div class="footer-logo">
+                <h2>ATS - Advanced Technological Solutions</h2>
+                <p>
+                    Bem-vindo! Somos uma equipe dedicada a transformar ideias em resultados, oferecendo soluções personalizadas em marketing digital, design e tecnologia.<br> Com experiência no mercado, trabalhamos em parceria com nossos clientes para impulsionar o crescimento e a visibilidade das marcas. <br>Junte-se a nós e descubra como podemos elevar sua marca no mundo digital!
+                </p>
+                <p>Estamos também por aqui:</p>
+                <div class="footer-social-media">
+                    <a href="https://instagram.com/ecodesign_eco?igshid=MzNlNGNkZWQ4Mg==" 
+                       class="footer-link" target="_blank">
+                        <img src="img/icones/instagram.jpg" alt="Instagram" width="40">
+                    </a>
+                    <a href="https://wa.link/ozma9r" class="footer-link" target="_blank">
+                        <img src="img/icones/whatsapp.jpg" alt="WhatsApp" width="40">
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Seção 2: Serviços -->
+            <div class="footer-work-time">
+                <h3>Serviços</h3>
+                <p>Estratégias</p>
+                <p>UI/UX Design</p>
+                <p>Análise de Dados</p>
+                <p>Testes e Validação</p>
+            </div>
+
+            <!-- Seção 3: Contatos -->
+            <div id="footer-contacts">
+                <h3>Nossos contatos</h3>
+                <p>
+                    <span><i class="fa-solid fa-location-dot fa-lg"></i></span>
+                    Rua Tito - Lapa, São Paulo - SP
+                </p>
+                <p>
+                    <span><i class="fa-solid fa-phone fa-lg"></i></span>
+                    +55 (11) 92652-6987
+                </p>
+                <p>
+                    <span><i class="fa-solid fa-envelope fa-lg"></i></span>
+                    atssuporte@contato.com
+                </p>
+            </div>
+
+            <!-- Seção 4: Horário -->
+            <div class="footer-work-time">
+                <h3>Horário de funcionamento</h3>
+                <p>Segunda a Sexta - 8h00 às 18h00</p>
+                <p>Sabádo - 8h00 às 16h00</p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div id="footer-copyright">
+            <p>Copyright &copy; 2025 ATS</p>
+        </div>
+    </footer>
+
+    <!-- Botão de voltar ao topo -->
+    <button class="button-top">
+        <span class="arrow"></span>
+    </button>
+
+   
+    <!-- JS: Voltar ao topo -->
+    <script>
+        const btnTop = document.getElementById("backToTop");
+        window.onscroll = () => {
+            if (window.scrollY > 100) {
+                btnTop.classList.add("btn-active");
+            } else {
+                btnTop.classList.remove("btn-active");
+            }
+        };
+        btnTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    </script>
+
+    <!-- FontAwesome para ícones -->
+    <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
+
+     <!-- Script JS personalizado -->
+    <script src="js/script.js"></script>
+</body>
+</html>
